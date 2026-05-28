@@ -1,0 +1,19 @@
+<svg width="900" height="700" viewBox="0 0 900 700" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Court reporting record panel</title>
+  <desc id="desc">A restrained document and stenography-inspired panel for Forbes Court Reporting.</desc>
+  <rect width="900" height="700" fill="#F9F9F9"/>
+  <rect x="78" y="58" width="744" height="584" rx="8" fill="#FFFFFF" stroke="#D3DBEB" stroke-width="2"/>
+  <rect x="126" y="112" width="302" height="24" rx="2" fill="#131D34"/>
+  <rect x="126" y="160" width="562" height="10" rx="5" fill="#D3DBEB"/>
+  <rect x="126" y="190" width="488" height="10" rx="5" fill="#D3DBEB"/>
+  <rect x="126" y="220" width="536" height="10" rx="5" fill="#D3DBEB"/>
+  <rect x="126" y="283" width="648" height="1" fill="#C6C6CE"/>
+  <rect x="126" y="325" width="148" height="72" rx="4" fill="#F3F3F4" stroke="#D3DBEB"/>
+  <rect x="302" y="325" width="148" height="72" rx="4" fill="#F3F3F4" stroke="#D3DBEB"/>
+  <rect x="478" y="325" width="148" height="72" rx="4" fill="#F3F3F4" stroke="#D3DBEB"/>
+  <rect x="654" y="325" width="120" height="72" rx="4" fill="#28324A"/>
+  <rect x="126" y="443" width="648" height="1" fill="#C6C6CE"/>
+  <path d="M158 520C196 482 250 482 288 520C326 558 380 558 418 520C456 482 510 482 548 520C586 558 640 558 678 520" stroke="#AE986C" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="722" cy="520" r="34" fill="#D3DBEB"/>
+  <path d="M709 519L719 529L738 506" stroke="#131D34" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
