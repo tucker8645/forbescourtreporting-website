@@ -1,19 +1,13 @@
 import Link from "next/link";
 import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
 import { contact, navItems } from "@/lib/site-data";
+import { HomeLink } from "@/components/home-link";
 
 export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-[var(--line)] bg-[rgba(249,249,249,0.92)] backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-4 sm:px-8 lg:px-16">
-        <Link href="/" className="group block">
-          <span className="block font-display text-lg font-semibold uppercase tracking-[0.08em] text-[var(--primary)] sm:text-xl">
-            Forbes
-          </span>
-          <span className="block text-xs font-semibold uppercase tracking-[0.22em] text-[var(--slate)]">
-            Court Reporting
-          </span>
-        </Link>
+        <HomeLink />
         <nav className="hidden items-center gap-6 lg:flex">
           {navItems.map((item) => (
             <Link

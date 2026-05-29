@@ -1,5 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
+import { CountUp } from "@/components/count-up";
+import { ScrollIndicator } from "@/components/scroll-indicator";
 import {
   ArrowRight,
   Award,
@@ -18,14 +19,24 @@ import { contact, counties, courts, legacy, reporters, services } from "@/lib/si
 
 export function Hero() {
   return (
-    <section className="section-band border-b border-[var(--line)] px-4 py-16 sm:px-8 sm:py-20 lg:px-16">
-      <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.02fr_0.98fr]">
-        <Reveal className="max-w-3xl">
-          <p className="eyebrow">Western New York and the Finger Lakes</p>
-          <h1 className="mt-5 text-balance font-display text-5xl font-semibold uppercase leading-[1.02] tracking-[0.035em] text-[var(--primary)] sm:text-6xl lg:text-7xl">
+    <section className="relative overflow-hidden min-h-[60vh] flex items-center px-4 py-16 sm:px-8 sm:py-20 lg:px-16">
+      {/* background video */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 h-full w-full object-cover"
+        src="/hero.mp4"
+      />
+      <div className="absolute inset-0 bg-[var(--primary)]/30" />
+      <div className="relative mx-auto w-full max-w-7xl flex justify-end">
+        <Reveal className="max-w-2xl rounded-lg bg-[var(--primary)]/10 backdrop-blur-[2px] p-8 sm:p-10">
+          <p className="eyebrow text-white/80">Western New York and the Finger Lakes</p>
+          <h1 className="mt-5 text-balance font-display text-5xl font-semibold uppercase leading-[1.02] tracking-[0.035em] text-white sm:text-6xl lg:text-7xl">
             Creating an honest record in and out of the courtroom.
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--slate)] sm:text-xl">
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-white/80 sm:text-xl">
             Forbes Court Reporting Services has provided stenographic and voice court reporting across the region since 1972, supporting courts, law firms, municipalities, and public proceedings with accurate records and quality transcripts.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -33,28 +44,9 @@ export function Hero() {
               Schedule a Reporter
               <ArrowRight size={17} aria-hidden="true" />
             </Link>
-            <Link className="btn-secondary min-h-12" href="/careers-students">
+            <Link className="btn-primary min-h-12" href="/careers-students">
               Reporter / Student Opportunities
             </Link>
-          </div>
-        </Reveal>
-        <Reveal className="relative">
-          <div className="absolute -right-4 -top-4 h-32 w-32 border-r border-t border-[var(--gold)]" aria-hidden="true" />
-          <div className="rounded-lg border border-[var(--line)] bg-white p-3 shadow-[0_22px_70px_rgba(19,29,52,0.08)]">
-            <Image
-              src="/brand/record-panel.svg"
-              alt="A document-style court reporting record panel"
-              width={900}
-              height={700}
-              priority
-              className="h-auto w-full rounded"
-            />
-          </div>
-          <div className="absolute -bottom-6 left-6 max-w-xs rounded border border-[var(--line)] bg-[var(--paper)] p-5 shadow-[0_18px_55px_rgba(19,29,52,0.1)]">
-            <p className="eyebrow">Since 1972</p>
-            <p className="mt-2 text-sm leading-6 text-[var(--slate)]">
-              Built through long-standing relationships with New York State court systems and law firms across the state.
-            </p>
           </div>
         </Reveal>
       </div>
@@ -64,7 +56,6 @@ export function Hero() {
 
 export function ProofStrip() {
   const proof = [
-    { label: "Since", value: "1972" },
     { label: "Coverage", value: "Western NY + Finger Lakes" },
     { label: "Methods", value: "Steno + Voice" },
     { label: "Delivery", value: "Hard copy + E-copy" },
@@ -73,10 +64,16 @@ export function ProofStrip() {
   return (
     <Section className="bg-[var(--primary)] py-8 text-white sm:py-10">
       <Reveal staggerChildren className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <RevealItem className="border-l border-white/18 pl-5">
+          <p className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-white/56">Since</p>
+          <p className="mt-2 font-display text-4xl font-semibold leading-none tracking-[0.035em] sm:text-5xl">
+            <CountUp target={1972} duration={2000} />
+          </p>
+        </RevealItem>
         {proof.map((item) => (
           <RevealItem key={item.label} className="border-l border-white/18 pl-5">
             <p className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-white/56">{item.label}</p>
-            <p className="mt-2 text-xl font-semibold">{item.value}</p>
+            <p className="mt-2 font-display text-2xl font-semibold leading-none tracking-[0.035em] sm:text-3xl">{item.value}</p>
           </RevealItem>
         ))}
       </Reveal>

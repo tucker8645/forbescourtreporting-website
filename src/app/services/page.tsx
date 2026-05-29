@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, FileCheck, Mail } from "lucide-react";
-import { ContactBand, ServicesList } from "@/components/content-blocks";
+import { ContactBand } from "@/components/content-blocks";
 import { PageShell } from "@/components/layout";
 import { Section, SectionIntro } from "@/components/section";
+import { ServicesAccordion } from "@/components/services-accordion";
 import { contact } from "@/lib/site-data";
 
 export const metadata: Metadata = {
@@ -16,14 +17,16 @@ export default function ServicesPage() {
   return (
     <PageShell>
       <Section className="section-band border-b border-[var(--line)]">
-        <SectionIntro eyebrow="Our Services" title="Stenographic and voice reporting for courts, firms, and public proceedings.">
-          <p>
-            Forbes Court Reporting takes down the record in courtroom, hearing, deposition, municipal, and public-sector settings, then provides hard-copy or e-copy transcripts.
-          </p>
-        </SectionIntro>
+        <p className="eyebrow">Our Services</p>
+        <h1 className="mt-5 max-w-4xl text-balance font-display text-5xl font-semibold uppercase leading-[1.02] tracking-[0.035em] text-[var(--primary)] sm:text-6xl lg:text-7xl">
+          Stenographic and voice reporting for courts, firms, and public proceedings.
+        </h1>
+        <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--slate)]">
+          Forbes Court Reporting takes down the record in courtroom, hearing, deposition, municipal, and public-sector settings, then provides hard-copy or e-copy transcripts.
+        </p>
       </Section>
       <Section>
-        <ServicesList />
+        <ServicesAccordion />
       </Section>
       <Section className="bg-[var(--surface-soft)]">
         <div className="grid gap-6 lg:grid-cols-3">
