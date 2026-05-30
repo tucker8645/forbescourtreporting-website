@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CountUp } from "@/components/count-up";
+import { MobileScrollHint } from "@/components/mobile-scroll-hint";
 import {
   ArrowRight,
   Award,
@@ -29,8 +30,8 @@ export function Hero() {
         src="/court-moving.mp4"
       />
       <div className="absolute inset-0 bg-[var(--primary)]/30" />
-      <div className="relative mx-auto w-full max-w-7xl flex flex-col gap-6 sm:block">
-        <Reveal className="max-w-2xl rounded-lg bg-[var(--primary)]/10 backdrop-blur-[2px] p-8 sm:float-right sm:p-10">
+      <div className="relative mx-auto w-full max-w-7xl flex justify-end">
+        <Reveal className="max-w-2xl rounded-lg bg-[var(--primary)]/10 backdrop-blur-[2px] p-8 sm:p-10">
           <p className="eyebrow !text-white">Western New York and the Finger Lakes</p>
           <h1 className="mt-5 text-balance font-display text-3xl font-semibold uppercase leading-[1.02] tracking-[0.035em] text-white sm:text-5xl lg:text-7xl">
             Creating an honest record in and out of the courtroom.
@@ -48,14 +49,9 @@ export function Hero() {
             </Link>
           </div>
         </Reveal>
-        {/* Scroll indicator — mobile only, sits below hero content */}
-        <div className="flex flex-col items-center gap-2 sm:hidden">
-          <span className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-white/70">Scroll</span>
-          <div className="relative h-8 w-px overflow-hidden bg-white/30">
-            <div className="absolute inset-x-0 top-0 h-1/2 animate-[scroll-line_1.2s_ease-in-out_infinite] bg-white" />
-          </div>
-        </div>
       </div>
+      {/* Mobile scroll indicator — absolute so it doesn't affect layout */}
+      <MobileScrollHint />
     </section>
   );
 }
