@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
   `;
 
   const { error } = await resend.emails.send({
-    from: "Forbes Court Reporting <onboarding@resend.dev>",
+    from: "Forbes Court Reporting <noreply@forbescourtreporting.com>",
     to: "kelly@forbescourtreporting.com",
     replyTo: email,
     subject: `Court Reporting Request — ${proceeding}${date ? ` — ${date}` : ""}`,
