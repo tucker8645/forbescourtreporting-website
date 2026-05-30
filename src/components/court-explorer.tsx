@@ -12,7 +12,7 @@ export function CourtExplorer({ courts }: Props) {
   const [selected, setSelected] = useState<Court | null>(null);
 
   return (
-    <div className="mt-8 relative">
+    <div className={`mt-8 relative transition-all duration-500 ${selected ? "lg:min-h-[520px]" : ""}`}>
       {/* Bubble strip */}
       <div
         className={`flex flex-wrap gap-2 transition-all duration-500 ${
