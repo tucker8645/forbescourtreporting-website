@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Send } from "lucide-react";
-import { contact, counties } from "@/lib/site-data";
+import { contact, counties, courts } from "@/lib/site-data";
 
 const proceedingTypes = [
   "Deposition",
@@ -27,7 +27,7 @@ export function ScheduleForm() {
     date: "",
     time: "",
     county: "",
-    location: "",
+    courthouse: "",
     transcript: "E-copy",
     urgency: "Standard",
     notes: "",
@@ -47,7 +47,7 @@ export function ScheduleForm() {
         `Proceeding type: ${form.proceeding}`,
         `Date/time: ${dateTime || "Not specified"}`,
         `County: ${form.county || "Not specified"}`,
-        `Specific location: ${form.location || "Not specified"}`,
+        `Courthouse / location: ${form.courthouse || "Not specified"}`,
         `Transcript needs: ${form.transcript}`,
         `Urgency: ${form.urgency}`,
         "",
@@ -64,6 +64,7 @@ export function ScheduleForm() {
 
   return (
     <form className="grid gap-4" action={mailto}>
+      {/* Row 1: Name | Email */}
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Name">
           <input value={form.name} onChange={(e) => update("name", e.target.value)} name="name" />
@@ -71,6 +72,10 @@ export function ScheduleForm() {
         <Field label="Email">
           <input value={form.email} onChange={(e) => update("email", e.target.value)} name="email" type="email" />
         </Field>
+      </div>
+
+      {/* Row 2: Phone | Organization */}
+      <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Phone">
           <input value={form.phone} onChange={(e) => update("phone", e.target.value)} name="phone" type="tel" />
         </Field>
@@ -79,6 +84,7 @@ export function ScheduleForm() {
         </Field>
       </div>
 
+      {/* Row 3: Proceeding type | Date + Time */}
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Proceeding type">
           <select value={form.proceeding} onChange={(e) => update("proceeding", e.target.value)} name="proceeding">
@@ -87,36 +93,28 @@ export function ScheduleForm() {
             ))}
           </select>
         </Field>
-        <Field label="Urgency">
-          <select value={form.urgency} onChange={(e) => update("urgency", e.target.value)} name="urgency">
-            <option>Standard</option>
-            <option>Upcoming proceeding</option>
-            <option>Rush request</option>
-            <option>Question first</option>
-          </select>
-        </Field>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <Field label="Date">
+            <input
+              value={form.date}
+              onChange={(e) => update("date", e.target.value)}
+              name="date"
+              type="date"
+              min={new Date().toISOString().split("T")[0]}
+            />
+          </Field>
+          <Field label="Time">
+            <input
+              value={form.time}
+              onChange={(e) => update("time", e.target.value)}
+              name="time"
+              type="time"
+            />
+          </Field>
+        </div>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Proceeding date">
-          <input
-            value={form.date}
-            onChange={(e) => update("date", e.target.value)}
-            name="date"
-            type="date"
-            min={new Date().toISOString().split("T")[0]}
-          />
-        </Field>
-        <Field label="Proceeding time">
-          <input
-            value={form.time}
-            onChange={(e) => update("time", e.target.value)}
-            name="time"
-            type="time"
-          />
-        </Field>
-      </div>
-
+      {/* Row 4: County | Courthouse */}
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="County">
           <select value={form.county} onChange={(e) => update("county", e.target.value)} name="county">
@@ -126,11 +124,18 @@ export function ScheduleForm() {
             ))}
           </select>
         </Field>
-        <Field label="Specific location / courthouse">
-          <input value={form.location} onChange={(e) => update("location", e.target.value)} name="location" placeholder="Address or courthouse name" />
+        <Field label="Courthouse / location">
+          <select value={form.courthouse} onChange={(e) => update("courthouse", e.target.value)} name="courthouse">
+            <option value="">Select a courthouse</option>
+            {courts.map((court) => (
+              <option key={court.name} value={court.name}>{court.name} Town Court</option>
+            ))}
+            <option value="Other">Other / Not listed</option>
+          </select>
         </Field>
       </div>
 
+      {/* Transcript */}
       <Field label="Transcript needs">
         <select value={form.transcript} onChange={(e) => update("transcript", e.target.value)} name="transcript">
           <option>E-copy</option>
@@ -140,6 +145,17 @@ export function ScheduleForm() {
         </select>
       </Field>
 
+      {/* Urgency */}
+      <Field label="Urgency">
+        <select value={form.urgency} onChange={(e) => update("urgency", e.target.value)} name="urgency">
+          <option>Standard</option>
+          <option>Upcoming proceeding</option>
+          <option>Rush request</option>
+          <option>Question first</option>
+        </select>
+      </Field>
+
+      {/* Notes */}
       <Field label="Notes">
         <textarea value={form.notes} onChange={(e) => update("notes", e.target.value)} name="notes" rows={4} placeholder="Any additional details, deadlines, or questions" />
       </Field>
