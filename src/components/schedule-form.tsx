@@ -84,8 +84,8 @@ export function ScheduleForm() {
         </Field>
       </div>
 
-      {/* Row 3: Proceeding type | Date + Time */}
-      <div className="grid gap-4 sm:grid-cols-2">
+      {/* Row 3: Proceeding | Date | Time */}
+      <div className="grid gap-4 sm:grid-cols-3">
         <Field label="Proceeding type">
           <select value={form.proceeding} onChange={(e) => update("proceeding", e.target.value)} name="proceeding">
             {proceedingTypes.map((type) => (
@@ -93,26 +93,24 @@ export function ScheduleForm() {
             ))}
           </select>
         </Field>
-        <div className="grid gap-4 sm:grid-cols-2">
-          <Field label="Date">
-            <input
-              value={form.date}
-              onChange={(e) => update("date", e.target.value)}
-              name="date"
-              type="date"
-              min={new Date().toISOString().split("T")[0]}
-            />
-          </Field>
-          <Field label="Time">
-            <input
-              value={form.time}
-              onChange={(e) => update("time", e.target.value)}
-              name="time"
-              type="text"
-              placeholder="e.g. 9:00 AM"
-            />
-          </Field>
-        </div>
+        <Field label="Date">
+          <input
+            value={form.date}
+            onChange={(e) => update("date", e.target.value)}
+            name="date"
+            type="date"
+            min={new Date().toISOString().split("T")[0]}
+          />
+        </Field>
+        <Field label="Time">
+          <input
+            value={form.time}
+            onChange={(e) => update("time", e.target.value)}
+            name="time"
+            type="text"
+            placeholder="e.g. 9:00 AM"
+          />
+        </Field>
       </div>
 
       {/* Row 4: County | Courthouse */}
