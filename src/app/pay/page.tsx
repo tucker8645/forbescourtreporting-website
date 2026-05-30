@@ -66,20 +66,6 @@ export default function PayPage() {
               ))}
             </div>
 
-            {/* Pay button after steps */}
-            <div className="rounded-lg border border-[var(--gold)] bg-white p-6">
-              <p className="eyebrow text-[var(--gold)]">Ready to pay?</p>
-              <p className="mt-2 text-sm leading-6 text-[var(--slate)]">
-                Have your invoice? Click below to complete your payment securely through Stripe.
-              </p>
-              <a
-                href="/api/pay"
-                className="btn-primary mt-4 inline-flex min-h-12 w-full items-center justify-center gap-2 sm:w-auto"
-              >
-                <CreditCard size={16} aria-hidden="true" />
-                Pay Invoice Now
-              </a>
-            </div>
           </div>
 
           {/* Contact to get invoice */}
@@ -107,24 +93,39 @@ export default function PayPage() {
                   <Mail size={16} className="text-[var(--gold)]" aria-hidden="true" />
                   {contact.email}
                 </a>
-                <Link
-                  href="/contact"
-                  className="btn-primary mt-2 min-h-12"
-                >
+                <Link href="/contact" className="btn-primary mt-2 min-h-12">
                   Send a Message
                   <ArrowRight size={16} aria-hidden="true" />
                 </Link>
               </div>
             </div>
 
-            <div className="rounded-lg border border-[var(--line)] bg-[var(--surface-soft)] p-6">
-              <div className="flex items-center gap-2">
-                <Lock size={16} className="text-[var(--gold)]" aria-hidden="true" />
-                <p className="text-sm font-semibold text-[var(--primary)]">Secure payments via Stripe</p>
+            {/* Two equal boxes side by side */}
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="rounded-lg border border-[var(--line)] bg-[var(--surface-soft)] p-6">
+                <div className="flex items-center gap-2">
+                  <Lock size={16} className="text-[var(--gold)]" aria-hidden="true" />
+                  <p className="text-sm font-semibold text-[var(--primary)]">Secure payments via Stripe</p>
+                </div>
+                <p className="mt-2 text-sm leading-6 text-[var(--slate)]">
+                  Card details are encrypted and never stored on our servers. All transactions are protected by 256-bit SSL encryption.
+                </p>
               </div>
-              <p className="mt-2 text-sm leading-6 text-[var(--slate)]">
-                Forbes Court Reporting uses Stripe for secure invoice payments. Card details are encrypted and never stored on our servers. All transactions are protected by 256-bit SSL encryption.
-              </p>
+              <div className="flex flex-col justify-between rounded-lg border border-[var(--gold)] bg-white p-6">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <CreditCard size={16} className="text-[var(--gold)]" aria-hidden="true" />
+                    <p className="text-sm font-semibold text-[var(--primary)]">Ready to pay?</p>
+                  </div>
+                  <p className="mt-2 text-sm leading-6 text-[var(--slate)]">
+                    Have your invoice? Click below to complete payment securely.
+                  </p>
+                </div>
+                <a href="/api/pay" className="btn-primary mt-4 flex min-h-11 items-center justify-center gap-2">
+                  Pay Invoice Now
+                  <ArrowRight size={15} aria-hidden="true" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
