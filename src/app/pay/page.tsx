@@ -77,7 +77,7 @@ export default function PayPage() {
                   Have your invoice? Click below to complete payment securely through Stripe.
                 </p>
               </div>
-              <a href="/api/pay" className="btn-primary mt-4 flex min-h-11 items-center justify-center gap-2">
+              <a href="https://buy.stripe.com/eVq28q94d8Dh9jB3As6sw00" target="_blank" rel="noopener noreferrer" className="btn-primary mt-4 flex min-h-11 items-center justify-center gap-2">
                 Pay Invoice Now
                 <ArrowRight size={15} aria-hidden="true" />
               </a>
