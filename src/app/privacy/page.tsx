@@ -65,7 +65,7 @@ export default function PrivacyPage() {
               <li>Any additional notes you choose to include</li>
             </UL>
             <P>
-              This information is transmitted to us via Resend, an email delivery service, and delivered directly to our business email inbox. We do not store your form submission in any database. Once the email is delivered, your data exists only in our email inbox.
+              When submitted through our main contact and scheduling form, this information is transmitted to us via Resend, an email delivery service, and delivered directly to our business email inbox. Availability inquiry forms on the coverage page open a pre-filled draft in your default email client, which you review and send yourself. In either case, we do not store your form submission in any database. Once received, your data exists only in our email inbox.
             </P>
             <P><strong className="text-[var(--primary)]">Information collected automatically</strong></P>
             <P>
