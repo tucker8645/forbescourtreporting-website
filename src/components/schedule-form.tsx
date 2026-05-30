@@ -6,8 +6,10 @@ import { contact, counties, courts } from "@/lib/site-data";
 
 const proceedingTypes = [
   "Deposition",
-  "Grand jury",
+  "Hearing",
   "Jury trial",
+  "Grand jury",
+  "Arbitration",
   "50-H hearing",
   "Disciplinary hearing",
   "Examination under oath",
@@ -16,6 +18,9 @@ const proceedingTypes = [
   "Public hearing",
   "Other",
 ];
+
+const transcriptOptions = ["E-copy", "Hard copy by mail", "Both", "No transcript needed"];
+const urgencyOptions = ["Standard", "Expedited", "Same-day", "Rush"];
 
 export function ScheduleForm() {
   const [form, setForm] = useState({
@@ -34,27 +39,28 @@ export function ScheduleForm() {
   });
 
   const mailto = useMemo(() => {
-    const subject = encodeURIComponent(`Court reporting request from ${form.name || "website"}`);
-    const dateTime = [form.date, form.time].filter(Boolean).join(" at ");
-    // Keep body short to avoid Safari's URL length limit
+    const subject = encodeURIComponent(
+      `Court Reporting Request - ${form.proceeding}${form.date ? ` - ${form.date}` : ""}`
+    );
     const lines = [
-      `Name: ${form.name}`,
-      `Email: ${form.email}`,
-      `Phone: ${form.phone}`,
-      form.organization ? `Org: ${form.organization}` : "",
-      `Proceeding: ${form.proceeding}`,
-      dateTime ? `Date/time: ${dateTime}` : "",
-      form.county ? `County: ${form.county}` : "",
-      form.courthouse ? `Courthouse: ${form.courthouse}` : "",
-      `Transcript: ${form.transcript}`,
+      `Name: ${form.name || "-"}`,
+      `Email: ${form.email || "-"}`,
+      `Phone: ${form.phone || "-"}`,
+      `Organization: ${form.organization || "-"}`,
+      `Proceeding Type: ${form.proceeding}`,
+      `Date: ${form.date || "-"}`,
+      `Time: ${form.time || "-"}`,
+      `County: ${form.county || "-"}`,
+      `Courthouse / Location: ${form.courthouse || "-"}`,
+      `Transcript Needs: ${form.transcript}`,
       `Urgency: ${form.urgency}`,
-      form.notes ? `Notes: ${form.notes}` : "",
-    ].filter(Boolean).join("\n");
+      `Notes: ${form.notes || "-"}`,
+    ].join("\n");
     return `${contact.emailHref}?subject=${subject}&body=${encodeURIComponent(lines)}`;
   }, [form]);
 
   function update(field: keyof typeof form, value: string) {
-    setForm((current) => ({ ...current, [field]: value }));
+    setForm((cur) => ({ ...cur, [field]: value }));
   }
 
   function handleSubmit(e: React.FormEvent) {
@@ -63,118 +69,124 @@ export function ScheduleForm() {
   }
 
   return (
-    <form className="grid gap-4" onSubmit={handleSubmit}>
-      {/* Row 1: Name | Email */}
-      <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Name">
-          <input value={form.name} onChange={(e) => update("name", e.target.value)} name="name" />
-        </Field>
-        <Field label="Email">
-          <input value={form.email} onChange={(e) => update("email", e.target.value)} name="email" type="email" />
-        </Field>
+    <form
+      onSubmit={handleSubmit}
+      className="grid gap-5 rounded-lg border border-[#CBD5E1] bg-white p-6 sm:p-8"
+      style={{ maxWidth: "850px" }}
+    >
+      {/* Name | Email */}
+      <div className="grid gap-5 sm:grid-cols-2">
+        <F label="Name">
+          <input value={form.name} onChange={(e) => update("name", e.target.value)} placeholder="Full name" />
+        </F>
+        <F label="Email">
+          <input type="email" value={form.email} onChange={(e) => update("email", e.target.value)} placeholder="email@example.com" />
+        </F>
       </div>
 
-      {/* Row 2: Phone | Organization */}
-      <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Phone">
-          <input value={form.phone} onChange={(e) => update("phone", e.target.value)} name="phone" type="tel" />
-        </Field>
-        <Field label="Organization">
-          <input value={form.organization} onChange={(e) => update("organization", e.target.value)} name="organization" />
-        </Field>
+      {/* Phone | Organization */}
+      <div className="grid gap-5 sm:grid-cols-2">
+        <F label="Phone">
+          <input type="tel" value={form.phone} onChange={(e) => update("phone", e.target.value)} placeholder="(555) 000-0000" />
+        </F>
+        <F label="Organization">
+          <input value={form.organization} onChange={(e) => update("organization", e.target.value)} placeholder="Law firm or agency" />
+        </F>
       </div>
 
-      {/* Row 3: Proceeding | Date | Time */}
-      <div className="grid gap-4 sm:grid-cols-3">
-        <Field label="Proceeding type">
-          <select value={form.proceeding} onChange={(e) => update("proceeding", e.target.value)} name="proceeding">
-            {proceedingTypes.map((type) => (
-              <option key={type}>{type}</option>
-            ))}
-          </select>
-        </Field>
-        <Field label="Date">
+      {/* Proceeding type — full width */}
+      <F label="Proceeding type">
+        <select value={form.proceeding} onChange={(e) => update("proceeding", e.target.value)}>
+          {proceedingTypes.map((t) => <option key={t}>{t}</option>)}
+        </select>
+      </F>
+
+      {/* Date | Time */}
+      <div className="grid gap-5 sm:grid-cols-2">
+        <F label="Date">
           <input
+            type="date"
             value={form.date}
             onChange={(e) => update("date", e.target.value)}
-            name="date"
-            type="date"
             min={new Date().toISOString().split("T")[0]}
+            placeholder="05/30/2026"
           />
-        </Field>
-        <Field label="Time">
+        </F>
+        <F label="Time">
           <input
+            type="text"
             value={form.time}
             onChange={(e) => update("time", e.target.value)}
-            name="time"
-            type="text"
             placeholder="e.g. 9:00 AM"
           />
-        </Field>
+        </F>
       </div>
 
-      {/* Row 4: County | Courthouse */}
-      <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="County">
-          <select value={form.county} onChange={(e) => update("county", e.target.value)} name="county">
+      {/* County | Courthouse */}
+      <div className="grid gap-5 sm:grid-cols-2">
+        <F label="County">
+          <select value={form.county} onChange={(e) => update("county", e.target.value)}>
             <option value="">Select a county</option>
-            {counties.map((county) => (
-              <option key={county} value={county}>{county} County</option>
-            ))}
+            {counties.map((c) => <option key={c} value={c}>{c} County</option>)}
           </select>
-        </Field>
-        <Field label="Courthouse / location">
-          <select value={form.courthouse} onChange={(e) => update("courthouse", e.target.value)} name="courthouse">
+        </F>
+        <F label="Courthouse / location">
+          <select value={form.courthouse} onChange={(e) => update("courthouse", e.target.value)}>
             <option value="">Select a courthouse</option>
-            {courts.map((court) => (
-              <option key={court.name} value={court.name}>{court.name} Town Court</option>
-            ))}
+            {courts.map((c) => <option key={c.name} value={c.name}>{c.name} Town Court</option>)}
             <option value="Other">Other / Not listed</option>
           </select>
-        </Field>
+        </F>
       </div>
 
-      {/* Transcript */}
-      <Field label="Transcript needs">
-        <select value={form.transcript} onChange={(e) => update("transcript", e.target.value)} name="transcript">
-          <option>E-copy</option>
-          <option>Hard copy by mail</option>
-          <option>Both</option>
-          <option>Not sure yet</option>
+      {/* Transcript needs — full width */}
+      <F label="Transcript needs">
+        <select value={form.transcript} onChange={(e) => update("transcript", e.target.value)}>
+          {transcriptOptions.map((t) => <option key={t}>{t}</option>)}
         </select>
-      </Field>
+      </F>
 
-      {/* Urgency */}
-      <Field label="Urgency">
-        <select value={form.urgency} onChange={(e) => update("urgency", e.target.value)} name="urgency">
-          <option>Standard</option>
-          <option>Upcoming proceeding</option>
-          <option>Rush request</option>
-          <option>Question first</option>
+      {/* Urgency — full width */}
+      <F label="Urgency">
+        <select value={form.urgency} onChange={(e) => update("urgency", e.target.value)}>
+          {urgencyOptions.map((u) => <option key={u}>{u}</option>)}
         </select>
-      </Field>
+      </F>
 
-      {/* Notes */}
-      <Field label="Notes">
-        <textarea value={form.notes} onChange={(e) => update("notes", e.target.value)} name="notes" rows={4} placeholder="Any additional details, deadlines, or questions" />
-      </Field>
+      {/* Notes — full width */}
+      <F label="Notes">
+        <textarea
+          value={form.notes}
+          onChange={(e) => update("notes", e.target.value)}
+          placeholder="Any additional details, deadlines, or questions"
+          rows={4}
+          style={{ minHeight: "120px" }}
+        />
+      </F>
 
-      <button className="btn-primary mt-2 min-h-12 w-full sm:w-fit" type="submit">
-        Prepare Email Request
-        <Send size={16} aria-hidden="true" />
-      </button>
-      <p className="text-sm leading-6 text-[var(--slate)]">
-        Clicking the button opens a pre-filled email to Forbes Court Reporting for your review before sending.
-      </p>
+      {/* Submit */}
+      <div className="flex flex-col gap-3">
+        <button
+          type="submit"
+          className="inline-flex w-full items-center justify-center gap-2 rounded px-6 py-3 text-sm font-semibold uppercase tracking-widest text-white transition-colors hover:opacity-90 sm:w-auto"
+          style={{ backgroundColor: "#0F172A", letterSpacing: "0.08em" }}
+        >
+          Prepare Email Request
+          <Send size={15} aria-hidden="true" />
+        </button>
+        <p className="text-sm leading-6 text-slate-400">
+          Clicking the button opens a pre-filled email to Forbes Court Reporting for your review before sending.
+        </p>
+      </div>
     </form>
   );
 }
 
-function Field({ label, children }: { label: string; children: React.ReactElement }) {
+function F({ label, children }: { label: string; children: React.ReactElement }) {
   return (
-    <label className="grid gap-2 text-sm font-semibold text-[var(--primary)]">
-      <span>{label}</span>
-      <span className="contents [&_input]:min-h-12 [&_input]:rounded [&_input]:border [&_input]:border-[var(--line)] [&_input]:bg-white [&_input]:px-3 [&_input]:text-base [&_input]:font-medium [&_input]:text-[var(--ink)] [&_select]:min-h-12 [&_select]:rounded [&_select]:border [&_select]:border-[var(--line)] [&_select]:bg-white [&_select]:px-3 [&_select]:text-base [&_select]:font-medium [&_select]:text-[var(--ink)] [&_textarea]:rounded [&_textarea]:border [&_textarea]:border-[var(--line)] [&_textarea]:bg-white [&_textarea]:p-3 [&_textarea]:text-base [&_textarea]:font-medium [&_textarea]:text-[var(--ink)]">
+    <label className="flex flex-col gap-1.5">
+      <span className="text-sm font-semibold text-[#0F172A]">{label}</span>
+      <span className="contents [&_input]:h-12 [&_input]:w-full [&_input]:rounded [&_input]:border [&_input]:border-[#CBD5E1] [&_input]:bg-white [&_input]:px-3 [&_input]:text-sm [&_input]:text-[#0F172A] [&_input]:outline-none [&_input]:transition [&_input:focus]:ring-2 [&_input:focus]:ring-blue-500 [&_input:focus]:ring-offset-1 [&_select]:h-12 [&_select]:w-full [&_select]:rounded [&_select]:border [&_select]:border-[#CBD5E1] [&_select]:bg-white [&_select]:px-3 [&_select]:text-sm [&_select]:text-[#0F172A] [&_select]:outline-none [&_select]:transition [&_select:focus]:ring-2 [&_select:focus]:ring-blue-500 [&_select:focus]:ring-offset-1 [&_textarea]:w-full [&_textarea]:rounded [&_textarea]:border [&_textarea]:border-[#CBD5E1] [&_textarea]:bg-white [&_textarea]:p-3 [&_textarea]:text-sm [&_textarea]:text-[#0F172A] [&_textarea]:outline-none [&_textarea]:transition [&_textarea:focus]:ring-2 [&_textarea:focus]:ring-blue-500 [&_textarea:focus]:ring-offset-1">
         {children}
       </span>
     </label>
