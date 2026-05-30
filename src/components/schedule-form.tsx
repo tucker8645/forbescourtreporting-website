@@ -36,34 +36,34 @@ export function ScheduleForm() {
   const mailto = useMemo(() => {
     const subject = encodeURIComponent(`Court reporting request from ${form.name || "website"}`);
     const dateTime = [form.date, form.time].filter(Boolean).join(" at ");
-    const body = encodeURIComponent(
-      [
-        "Court reporting request",
-        "",
-        `Name: ${form.name}`,
-        `Email: ${form.email}`,
-        `Phone: ${form.phone}`,
-        `Organization: ${form.organization}`,
-        `Proceeding type: ${form.proceeding}`,
-        `Date/time: ${dateTime || "Not specified"}`,
-        `County: ${form.county || "Not specified"}`,
-        `Courthouse / location: ${form.courthouse || "Not specified"}`,
-        `Transcript needs: ${form.transcript}`,
-        `Urgency: ${form.urgency}`,
-        "",
-        "Notes:",
-        form.notes,
-      ].join("\n"),
-    );
-    return `${contact.emailHref}?subject=${subject}&body=${body}`;
+    // Keep body short to avoid Safari's URL length limit
+    const lines = [
+      `Name: ${form.name}`,
+      `Email: ${form.email}`,
+      `Phone: ${form.phone}`,
+      form.organization ? `Org: ${form.organization}` : "",
+      `Proceeding: ${form.proceeding}`,
+      dateTime ? `Date/time: ${dateTime}` : "",
+      form.county ? `County: ${form.county}` : "",
+      form.courthouse ? `Courthouse: ${form.courthouse}` : "",
+      `Transcript: ${form.transcript}`,
+      `Urgency: ${form.urgency}`,
+      form.notes ? `Notes: ${form.notes}` : "",
+    ].filter(Boolean).join("\n");
+    return `${contact.emailHref}?subject=${subject}&body=${encodeURIComponent(lines)}`;
   }, [form]);
 
   function update(field: keyof typeof form, value: string) {
     setForm((current) => ({ ...current, [field]: value }));
   }
 
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    window.location.href = mailto;
+  }
+
   return (
-    <form className="grid gap-4" action={mailto}>
+    <form className="grid gap-4" onSubmit={handleSubmit}>
       {/* Row 1: Name | Email */}
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Name">
