@@ -117,3 +117,8 @@ textarea {
 .text-balance {
   text-wrap: balance;
 }
+
+@keyframes scroll-line {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(300%); }
+}

@@ -7,7 +7,9 @@ export default function Home() {
     <PageShell>
       <Hero />
       <ProofStrip />
-      <ScrollIndicator />
+      <div className="hidden sm:block">
+        <ScrollIndicator />
+      </div>
       <ServicesPreview />
       <CoveragePreview />
       <LegacySection />
