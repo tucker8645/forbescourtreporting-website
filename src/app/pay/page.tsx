@@ -66,6 +66,33 @@ export default function PayPage() {
               ))}
             </div>
 
+            {/* Two equal boxes below steps */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="rounded-lg border border-[var(--line)] bg-[var(--surface-soft)] p-6">
+                <div className="flex items-center gap-2">
+                  <Lock size={16} className="text-[var(--gold)]" aria-hidden="true" />
+                  <p className="text-sm font-semibold text-[var(--primary)]">Secure payments via Stripe</p>
+                </div>
+                <p className="mt-2 text-sm leading-6 text-[var(--slate)]">
+                  Card details are encrypted and never stored on our servers. Protected by 256-bit SSL encryption.
+                </p>
+              </div>
+              <div className="flex flex-col justify-between rounded-lg border border-[var(--gold)] bg-white p-6">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <CreditCard size={16} className="text-[var(--gold)]" aria-hidden="true" />
+                    <p className="text-sm font-semibold text-[var(--primary)]">Ready to pay?</p>
+                  </div>
+                  <p className="mt-2 text-sm leading-6 text-[var(--slate)]">
+                    Have your invoice? Click below to complete payment securely.
+                  </p>
+                </div>
+                <a href="/api/pay" className="btn-primary mt-4 flex min-h-11 items-center justify-center gap-2">
+                  Pay Invoice Now
+                  <ArrowRight size={15} aria-hidden="true" />
+                </a>
+              </div>
+            </div>
           </div>
 
           {/* Contact to get invoice */}
@@ -100,33 +127,6 @@ export default function PayPage() {
               </div>
             </div>
 
-            {/* Two equal boxes side by side */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="rounded-lg border border-[var(--line)] bg-[var(--surface-soft)] p-6">
-                <div className="flex items-center gap-2">
-                  <Lock size={16} className="text-[var(--gold)]" aria-hidden="true" />
-                  <p className="text-sm font-semibold text-[var(--primary)]">Secure payments via Stripe</p>
-                </div>
-                <p className="mt-2 text-sm leading-6 text-[var(--slate)]">
-                  Card details are encrypted and never stored on our servers. All transactions are protected by 256-bit SSL encryption.
-                </p>
-              </div>
-              <div className="flex flex-col justify-between rounded-lg border border-[var(--gold)] bg-white p-6">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <CreditCard size={16} className="text-[var(--gold)]" aria-hidden="true" />
-                    <p className="text-sm font-semibold text-[var(--primary)]">Ready to pay?</p>
-                  </div>
-                  <p className="mt-2 text-sm leading-6 text-[var(--slate)]">
-                    Have your invoice? Click below to complete payment securely.
-                  </p>
-                </div>
-                <a href="/api/pay" className="btn-primary mt-4 flex min-h-11 items-center justify-center gap-2">
-                  Pay Invoice Now
-                  <ArrowRight size={15} aria-hidden="true" />
-                </a>
-              </div>
-            </div>
           </div>
         </div>
       </Section>
