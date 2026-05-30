@@ -101,7 +101,7 @@ export default function PayPage() {
             </div>
 
             {/* Two equal boxes side by side */}
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid grid-cols-2 gap-4">
               <div className="rounded-lg border border-[var(--line)] bg-[var(--surface-soft)] p-6">
                 <div className="flex items-center gap-2">
                   <Lock size={16} className="text-[var(--gold)]" aria-hidden="true" />
