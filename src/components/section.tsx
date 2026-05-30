@@ -10,7 +10,7 @@ export function PageHero({ children }: { children: React.ReactNode }) {
         src="/court-moving.mp4"
       />
       <div className="absolute inset-0 bg-[var(--primary)]/60" />
-      <div className="relative px-4 py-16 sm:px-8 sm:py-20 lg:px-16">
+      <div className="relative px-4 py-12 sm:px-8 sm:py-16 lg:px-16 lg:py-20">
         <div className="mx-auto max-w-7xl">{children}</div>
       </div>
     </section>
@@ -27,7 +27,7 @@ export function Section({
   id?: string;
 }) {
   return (
-    <section id={id} className={`px-4 py-16 sm:px-8 sm:py-20 lg:px-16 ${className}`}>
+    <section id={id} className={`px-4 py-10 sm:px-8 sm:py-16 lg:px-16 lg:py-20 ${className}`}>
       <div className="mx-auto max-w-7xl">{children}</div>
     </section>
   );

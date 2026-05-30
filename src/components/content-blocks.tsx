@@ -32,7 +32,7 @@ export function Hero() {
       <div className="relative mx-auto w-full max-w-7xl flex justify-end">
         <Reveal className="max-w-2xl rounded-lg bg-[var(--primary)]/10 backdrop-blur-[2px] p-8 sm:p-10">
           <p className="eyebrow !text-white">Western New York and the Finger Lakes</p>
-          <h1 className="mt-5 text-balance font-display text-5xl font-semibold uppercase leading-[1.02] tracking-[0.035em] text-white sm:text-6xl lg:text-7xl">
+          <h1 className="mt-5 text-balance font-display text-3xl font-semibold uppercase leading-[1.02] tracking-[0.035em] text-white sm:text-5xl lg:text-7xl">
             Creating an honest record in and out of the courtroom.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-white/80 sm:text-xl">

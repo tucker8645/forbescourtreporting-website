@@ -100,7 +100,7 @@ export function Header() {
 export function Footer() {
   return (
     <footer className="bg-[var(--primary)] text-white">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-8 lg:grid-cols-[1.2fr_0.8fr_0.8fr] lg:px-16">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:px-8 sm:py-12 lg:grid-cols-[1.2fr_0.8fr_0.8fr] lg:gap-10 lg:px-16 lg:py-14">
         <div>
           <p className="font-display text-2xl font-semibold uppercase tracking-[0.06em]">
             Forbes Court Reporting Services, LLC.

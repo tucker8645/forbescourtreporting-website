@@ -123,7 +123,7 @@ function CountyMapModal({ county, onClose }: CountyMapModalProps) {
         </div>
 
         {/* Map */}
-        <div ref={mapRef} className="h-72 w-full shrink-0" />
+        <div ref={mapRef} className="h-52 w-full shrink-0 sm:h-72" />
 
         {/* Availability form */}
         <div className="border-t border-[var(--line)] px-6 py-6">
@@ -260,7 +260,7 @@ export function CoverageOverviewMap() {
     };
   }, []);
 
-  return <div ref={mapRef} className="relative z-0 h-full w-full min-h-[480px] rounded border border-[var(--line)]" />;
+  return <div ref={mapRef} className="relative z-0 h-full w-full min-h-[300px] rounded border border-[var(--line)] sm:min-h-[400px] lg:min-h-[480px]" />;
 }
 
 export function CountyCard({ county }: { county: string }) {

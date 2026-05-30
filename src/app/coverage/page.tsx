@@ -18,7 +18,7 @@ export default function CoveragePage() {
     <PageShell>
       <PageHero>
         <p className="eyebrow !text-white">Coverage Area</p>
-        <h1 className="mt-3 max-w-3xl text-balance font-display text-5xl font-semibold uppercase leading-[1.02] tracking-[0.035em] text-white sm:text-6xl lg:text-7xl">
+        <h1 className="mt-3 max-w-3xl text-balance font-display text-3xl font-semibold uppercase leading-[1.02] tracking-[0.035em] text-white sm:text-5xl lg:text-7xl">
           A regional court reporting footprint built from Batavia outward.
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-8 text-white/80">
@@ -27,7 +27,8 @@ export default function CoveragePage() {
       </PageHero>
       <Section>
         <div className="grid gap-10 lg:grid-cols-2">
-          <div className="flex flex-col gap-4">
+          {/* Counties first on mobile, map second */}
+          <div className="order-2 lg:order-1 flex flex-col gap-4">
             <div>
               <p className="eyebrow">Coverage Map</p>
               <h2 className="mt-3 font-display text-3xl font-semibold uppercase tracking-[0.04em] text-[var(--primary)]">
@@ -39,7 +40,7 @@ export default function CoveragePage() {
             </div>
             <CoverageOverviewMap />
           </div>
-          <div>
+          <div className="order-1 lg:order-2">
             <p className="eyebrow">Counties</p>
             <h2 className="mt-3 font-display text-3xl font-semibold uppercase tracking-[0.04em] text-[var(--primary)]">
               County coverage

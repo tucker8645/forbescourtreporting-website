@@ -16,7 +16,7 @@ export default function PayPage() {
     <PageShell>
       <PageHero>
         <p className="eyebrow !text-white">Secure Payment</p>
-        <h1 className="mt-3 max-w-3xl text-balance font-display text-5xl font-semibold uppercase leading-[1.02] tracking-[0.035em] text-white sm:text-6xl lg:text-7xl">
+        <h1 className="mt-3 max-w-3xl text-balance font-display text-3xl font-semibold uppercase leading-[1.02] tracking-[0.035em] text-white sm:text-5xl lg:text-7xl">
           Pay your Forbes invoice online.
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-8 text-white/80">

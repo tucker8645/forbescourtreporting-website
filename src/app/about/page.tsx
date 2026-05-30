@@ -17,7 +17,7 @@ export default function AboutPage() {
     <PageShell>
       <PageHero>
         <p className="eyebrow !text-white">About Forbes</p>
-        <h1 className="mt-3 max-w-3xl text-balance font-display text-5xl font-semibold uppercase leading-[1.02] tracking-[0.035em] text-white sm:text-6xl lg:text-7xl">
+        <h1 className="mt-3 max-w-3xl text-balance font-display text-3xl font-semibold uppercase leading-[1.02] tracking-[0.035em] text-white sm:text-5xl lg:text-7xl">
           Celebrating over 50 years of court reporting.
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-8 text-white/80">
@@ -30,7 +30,7 @@ export default function AboutPage() {
           {legacy.map((person, index) => (
             <article
               key={person.name}
-              className={`grid gap-8 rounded-lg border border-[var(--line)] bg-white p-6 sm:p-8 lg:grid-cols-[220px_1fr] ${
+              className={`grid gap-6 rounded-lg border border-[var(--line)] bg-white p-6 sm:p-8 sm:gap-8 lg:grid-cols-[200px_1fr] ${
                 index % 2 !== 0 ? "lg:ml-12" : "lg:mr-12"
               }`}
             >
@@ -46,7 +46,7 @@ export default function AboutPage() {
                   )}
                 </div>
                 {person.photo && (
-                  <div className="relative h-40 w-40 overflow-hidden rounded-full border-4 border-[var(--serene-blue)] shadow-md">
+                  <div className="relative h-28 w-28 overflow-hidden rounded-full border-4 border-[var(--serene-blue)] shadow-md sm:h-36 sm:w-36 lg:h-40 lg:w-40">
                     <Image
                       src={person.photo}
                       alt={person.name}
