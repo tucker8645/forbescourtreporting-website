@@ -188,7 +188,7 @@ export function LegacySection() {
             <RevealItem key={person.name} className="border-l-2 border-[var(--gold)] bg-white p-5">
               <h3 className="font-display text-xl font-semibold uppercase tracking-[0.04em] text-[var(--primary)]">{person.name}</h3>
               <p className="mt-1 text-sm font-semibold text-[var(--gold)]">{person.role}</p>
-              <p className="mt-3 leading-7 text-[var(--slate)]">{person.detail}</p>
+              <p className="mt-3 leading-7 text-[var(--slate)]">{person.bio[0]}</p>
             </RevealItem>
           ))}
         </Reveal>

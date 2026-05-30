@@ -61,6 +61,15 @@ function CourtPanel({ court, onClose }: { court: Court; onClose: () => void }) {
     import("leaflet").then((L) => {
       if (!mapRef.current) return;
 
+      // Fix broken default marker icons in Next.js/webpack
+      // @ts-expect-error _getIconUrl is private
+      delete L.Icon.Default.prototype._getIconUrl;
+      L.Icon.Default.mergeOptions({
+        iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+        iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
+        shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+      });
+
       const map = L.map(mapRef.current, {
         zoomControl: false,
         scrollWheelZoom: false,
@@ -84,8 +93,6 @@ function CourtPanel({ court, onClose }: { court: Court; onClose: () => void }) {
     };
   }, [court]);
 
-  const sv1 = `/api/streetview?lat=${court.lat}&lon=${court.lon}&w=600&h=300&fov=90&pitch=10`;
-  const sv2 = `/api/streetview?lat=${court.lat}&lon=${court.lon}&w=600&h=300&fov=90&pitch=0`;
 
   return (
     <div className="rounded-lg border border-[var(--line)] bg-white shadow-lg overflow-hidden">
@@ -106,41 +113,19 @@ function CourtPanel({ court, onClose }: { court: Court; onClose: () => void }) {
         </button>
       </div>
 
-      {/* Body: map left, photos right */}
-      <div className="grid grid-cols-1 gap-0 sm:grid-cols-2">
-        {/* Mini map */}
-        <div className="relative z-0 border-r border-[var(--line)]">
-          <div ref={mapRef} className="h-52 w-full" />
-        </div>
-
-        {/* Street View photos column */}
-        <div className="flex flex-col">
-          <img
-            src={sv1}
-            alt={`${court.name} Town Court street view`}
-            className="h-[104px] w-full object-cover border-b border-[var(--line)]"
-            onError={(e) => {
-              (e.currentTarget as HTMLImageElement).style.display = "none";
-            }}
-          />
-          <img
-            src={sv2}
-            alt={`${court.name} Town Court street view angle 2`}
-            className="h-[104px] w-full object-cover"
-            onError={(e) => {
-              (e.currentTarget as HTMLImageElement).style.display = "none";
-            }}
-          />
-        </div>
+      {/* Map */}
+      <div className="relative z-0">
+        <div ref={mapRef} className="h-64 w-full" />
       </div>
 
       {/* Footer CTA */}
       <div className="border-t border-[var(--line)] px-5 py-4">
+        <p className="text-xs text-[var(--slate)]">{court.address}</p>
         <a
-          href={`https://www.google.com/maps/search/${encodeURIComponent(court.name + " Town Court New York")}/@${court.lat},${court.lon},15z`}
+          href={`https://www.google.com/maps/search/${encodeURIComponent(court.name + " Town Court " + court.address)}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-sm font-semibold text-[var(--primary)] underline underline-offset-2 hover:text-[var(--gold)]"
+          className="mt-2 inline-block text-sm font-semibold text-[var(--primary)] underline underline-offset-2 hover:text-[var(--gold)]"
         >
           Open in Google Maps →
         </a>
