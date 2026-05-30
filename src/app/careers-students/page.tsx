@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight, BriefcaseBusiness, GraduationCap } from "lucide-react";
 import { ReporterRoster } from "@/components/content-blocks";
 import { PageShell } from "@/components/layout";
-import { Section, SectionIntro } from "@/components/section";
+import { PageHero, Section, SectionIntro } from "@/components/section";
 
 export const metadata: Metadata = {
   title: "Careers & Students",
@@ -14,13 +14,15 @@ export const metadata: Metadata = {
 export default function CareersStudentsPage() {
   return (
     <PageShell>
-      <Section className="section-band border-b border-[var(--line)]">
-        <SectionIntro eyebrow="Careers & Students" title="Build experience where the record matters.">
-          <p>
-            Forbes hires experienced reporters and new graduates, and offers sitting-in opportunities for stenography students ready for real courtroom exposure.
-          </p>
-        </SectionIntro>
-      </Section>
+      <PageHero>
+        <p className="eyebrow !text-white">Careers &amp; Students</p>
+        <h1 className="mt-3 max-w-3xl text-balance font-display text-5xl font-semibold uppercase leading-[1.02] tracking-[0.035em] text-white sm:text-6xl lg:text-7xl">
+          Build experience where the record matters.
+        </h1>
+        <p className="mt-6 max-w-2xl text-lg leading-8 text-white/80">
+          Forbes hires experienced reporters and new graduates, and offers sitting-in opportunities for stenography students ready for real courtroom exposure.
+        </p>
+      </PageHero>
       <Section>
         <div className="grid gap-6 lg:grid-cols-2">
           <article className="rounded border border-[var(--line)] bg-white p-6 sm:p-8">

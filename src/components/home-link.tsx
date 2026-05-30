@@ -17,10 +17,10 @@ export function HomeLink() {
         className="h-[100px] w-[100px] rounded object-contain pointer-events-none"
       />
       <div>
-        <span className="block font-display text-lg font-semibold uppercase tracking-[0.08em] text-[var(--primary)] sm:text-xl">
+        <span className="block font-display text-2xl font-semibold uppercase tracking-[0.08em] text-[var(--primary)] sm:text-3xl">
           Forbes
         </span>
-        <span className="block text-xs font-semibold uppercase tracking-[0.22em] text-[var(--slate)]">
+        <span className="block text-base font-semibold uppercase tracking-[0.22em] text-[var(--slate)]">
           Court Reporting
         </span>
       </div>

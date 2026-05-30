@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, MapPinned } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { CountyCard, CoverageOverviewMap } from "@/components/county-map";
 import { PageShell } from "@/components/layout";
-import { Section, SectionIntro } from "@/components/section";
+import { PageHero, Section, SectionIntro } from "@/components/section";
 import { contact, counties, courts } from "@/lib/site-data";
 
 export const metadata: Metadata = {
@@ -14,31 +15,42 @@ export const metadata: Metadata = {
 export default function CoveragePage() {
   return (
     <PageShell>
-      <Section className="section-band border-b border-[var(--line)]">
-        <SectionIntro eyebrow="Coverage Area" title="A regional court reporting footprint built from Batavia outward.">
-          <p>
-            Forbes covers Western New York and the Finger Lakes, with county, town, village, court, meeting, and public hearing work across the region.
-          </p>
-        </SectionIntro>
-      </Section>
+      <PageHero>
+        <p className="eyebrow !text-white">Coverage Area</p>
+        <h1 className="mt-3 max-w-3xl text-balance font-display text-5xl font-semibold uppercase leading-[1.02] tracking-[0.035em] text-white sm:text-6xl lg:text-7xl">
+          A regional court reporting footprint built from Batavia outward.
+        </h1>
+        <p className="mt-6 max-w-2xl text-lg leading-8 text-white/80">
+          Forbes covers Western New York and the Finger Lakes, with county, town, village, court, meeting, and public hearing work across the region.
+        </p>
+      </PageHero>
       <Section>
-        <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr]">
+        <div className="grid gap-10 lg:grid-cols-2">
+          <div className="flex flex-col gap-4">
+            <div>
+              <p className="eyebrow">Coverage Map</p>
+              <h2 className="mt-3 font-display text-3xl font-semibold uppercase tracking-[0.04em] text-[var(--primary)]">
+                Service area
+              </h2>
+              <p className="mt-2 leading-7 text-[var(--slate)]">
+                All 13 counties Forbes covers across Western New York and the Finger Lakes.
+              </p>
+            </div>
+            <CoverageOverviewMap />
+          </div>
           <div>
             <p className="eyebrow">Counties</p>
             <h2 className="mt-3 font-display text-3xl font-semibold uppercase tracking-[0.04em] text-[var(--primary)]">
               County coverage
             </h2>
-            <p className="mt-4 leading-7 text-[var(--slate)]">
-              Ask about exact availability for your proceeding date, location, and transcript needs.
+            <p className="mt-2 leading-7 text-[var(--slate)]">
+              Click a county to view its boundary on a map and ask about exact availability for your proceeding date, location, and transcript needs.
             </p>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {counties.map((county) => (
-              <div key={county} className="flex items-center gap-3 rounded border border-[var(--line)] bg-white p-4">
-                <MapPinned size={18} className="text-[var(--gold)]" aria-hidden="true" />
-                <span className="font-semibold text-[var(--primary)]">{county} County</span>
-              </div>
-            ))}
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              {counties.map((county) => (
+                <CountyCard key={county} county={county} />
+              ))}
+            </div>
           </div>
         </div>
       </Section>

@@ -1,3 +1,22 @@
+export function PageHero({ children }: { children: React.ReactNode }) {
+  return (
+    <section className="relative overflow-hidden border-b border-[var(--line)]">
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 h-full w-full object-cover object-[center_20%] scale-110"
+        src="/court-moving.mp4"
+      />
+      <div className="absolute inset-0 bg-[var(--primary)]/60" />
+      <div className="relative px-4 py-16 sm:px-8 sm:py-20 lg:px-16">
+        <div className="mx-auto max-w-7xl">{children}</div>
+      </div>
+    </section>
+  );
+}
+
 export function Section({
   children,
   className = "",

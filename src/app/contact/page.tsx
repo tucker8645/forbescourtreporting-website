@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { ScheduleForm } from "@/components/schedule-form";
 import { PageShell } from "@/components/layout";
-import { Section, SectionIntro } from "@/components/section";
+import { PageHero, Section, SectionIntro } from "@/components/section";
 import { contact } from "@/lib/site-data";
 
 export const metadata: Metadata = {
@@ -14,13 +14,15 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <PageShell>
-      <Section className="section-band border-b border-[var(--line)]">
-        <SectionIntro eyebrow="Contact / Schedule" title="Send proceeding details or call Forbes directly.">
-          <p>
-            Use the form to prepare an email request, or contact Forbes Court Reporting directly by phone or email.
-          </p>
-        </SectionIntro>
-      </Section>
+      <PageHero>
+        <p className="eyebrow !text-white">Contact / Schedule</p>
+        <h1 className="mt-3 max-w-3xl text-balance font-display text-5xl font-semibold uppercase leading-[1.02] tracking-[0.035em] text-white sm:text-6xl lg:text-7xl">
+          Send proceeding details or call Forbes directly.
+        </h1>
+        <p className="mt-6 max-w-2xl text-lg leading-8 text-white/80">
+          Use the form to prepare an email request, or contact Forbes Court Reporting directly by phone or email.
+        </p>
+      </PageHero>
       <Section>
         <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr]">
           <aside className="h-fit rounded border border-[var(--line)] bg-[var(--surface-soft)] p-6">

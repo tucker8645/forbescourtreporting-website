@@ -27,12 +27,12 @@ export function Hero() {
         loop
         playsInline
         className="absolute inset-0 h-full w-full object-cover"
-        src="/hero.mp4"
+        src="/court-moving.mp4"
       />
       <div className="absolute inset-0 bg-[var(--primary)]/30" />
       <div className="relative mx-auto w-full max-w-7xl flex justify-end">
         <Reveal className="max-w-2xl rounded-lg bg-[var(--primary)]/10 backdrop-blur-[2px] p-8 sm:p-10">
-          <p className="eyebrow text-white/80">Western New York and the Finger Lakes</p>
+          <p className="eyebrow !text-white">Western New York and the Finger Lakes</p>
           <h1 className="mt-5 text-balance font-display text-5xl font-semibold uppercase leading-[1.02] tracking-[0.035em] text-white sm:text-6xl lg:text-7xl">
             Creating an honest record in and out of the courtroom.
           </h1>
