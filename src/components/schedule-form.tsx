@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Send } from "lucide-react";
-import { contact } from "@/lib/site-data";
+import { contact, counties } from "@/lib/site-data";
 
 const proceedingTypes = [
   "Deposition",
@@ -25,6 +25,8 @@ export function ScheduleForm() {
     organization: "",
     proceeding: "Deposition",
     date: "",
+    time: "",
+    county: "",
     location: "",
     transcript: "E-copy",
     urgency: "Standard",
@@ -33,6 +35,7 @@ export function ScheduleForm() {
 
   const mailto = useMemo(() => {
     const subject = encodeURIComponent(`Court reporting request from ${form.name || "website"}`);
+    const dateTime = [form.date, form.time].filter(Boolean).join(" at ");
     const body = encodeURIComponent(
       [
         "Court reporting request",
@@ -42,8 +45,9 @@ export function ScheduleForm() {
         `Phone: ${form.phone}`,
         `Organization: ${form.organization}`,
         `Proceeding type: ${form.proceeding}`,
-        `Date/time: ${form.date}`,
-        `County/location: ${form.location}`,
+        `Date/time: ${dateTime || "Not specified"}`,
+        `County: ${form.county || "Not specified"}`,
+        `Specific location: ${form.location || "Not specified"}`,
         `Transcript needs: ${form.transcript}`,
         `Urgency: ${form.urgency}`,
         "",
@@ -51,7 +55,6 @@ export function ScheduleForm() {
         form.notes,
       ].join("\n"),
     );
-
     return `${contact.emailHref}?subject=${subject}&body=${body}`;
   }, [form]);
 
@@ -63,58 +66,90 @@ export function ScheduleForm() {
     <form className="grid gap-4" action={mailto}>
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Name">
-          <input value={form.name} onChange={(event) => update("name", event.target.value)} name="name" />
+          <input value={form.name} onChange={(e) => update("name", e.target.value)} name="name" />
         </Field>
         <Field label="Email">
-          <input value={form.email} onChange={(event) => update("email", event.target.value)} name="email" type="email" />
+          <input value={form.email} onChange={(e) => update("email", e.target.value)} name="email" type="email" />
         </Field>
         <Field label="Phone">
-          <input value={form.phone} onChange={(event) => update("phone", event.target.value)} name="phone" type="tel" />
+          <input value={form.phone} onChange={(e) => update("phone", e.target.value)} name="phone" type="tel" />
         </Field>
         <Field label="Organization">
-          <input value={form.organization} onChange={(event) => update("organization", event.target.value)} name="organization" />
+          <input value={form.organization} onChange={(e) => update("organization", e.target.value)} name="organization" />
         </Field>
       </div>
+
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Proceeding type">
-          <select value={form.proceeding} onChange={(event) => update("proceeding", event.target.value)} name="proceeding">
+          <select value={form.proceeding} onChange={(e) => update("proceeding", e.target.value)} name="proceeding">
             {proceedingTypes.map((type) => (
               <option key={type}>{type}</option>
             ))}
           </select>
         </Field>
-        <Field label="Date / time">
-          <input value={form.date} onChange={(event) => update("date", event.target.value)} name="date" placeholder="Known date or requested window" />
-        </Field>
-        <Field label="County / location">
-          <input value={form.location} onChange={(event) => update("location", event.target.value)} name="location" />
-        </Field>
-        <Field label="Transcript needs">
-          <select value={form.transcript} onChange={(event) => update("transcript", event.target.value)} name="transcript">
-            <option>E-copy</option>
-            <option>Hard copy by mail</option>
-            <option>Both</option>
-            <option>Not sure yet</option>
+        <Field label="Urgency">
+          <select value={form.urgency} onChange={(e) => update("urgency", e.target.value)} name="urgency">
+            <option>Standard</option>
+            <option>Upcoming proceeding</option>
+            <option>Rush request</option>
+            <option>Question first</option>
           </select>
         </Field>
       </div>
-      <Field label="Urgency">
-        <select value={form.urgency} onChange={(event) => update("urgency", event.target.value)} name="urgency">
-          <option>Standard</option>
-          <option>Upcoming proceeding</option>
-          <option>Rush request</option>
-          <option>Question first</option>
+
+      <div className="grid gap-4 sm:grid-cols-2">
+        <Field label="Proceeding date">
+          <input
+            value={form.date}
+            onChange={(e) => update("date", e.target.value)}
+            name="date"
+            type="date"
+            min={new Date().toISOString().split("T")[0]}
+          />
+        </Field>
+        <Field label="Proceeding time">
+          <input
+            value={form.time}
+            onChange={(e) => update("time", e.target.value)}
+            name="time"
+            type="time"
+          />
+        </Field>
+      </div>
+
+      <div className="grid gap-4 sm:grid-cols-2">
+        <Field label="County">
+          <select value={form.county} onChange={(e) => update("county", e.target.value)} name="county">
+            <option value="">Select a county</option>
+            {counties.map((county) => (
+              <option key={county} value={county}>{county} County</option>
+            ))}
+          </select>
+        </Field>
+        <Field label="Specific location / courthouse">
+          <input value={form.location} onChange={(e) => update("location", e.target.value)} name="location" placeholder="Address or courthouse name" />
+        </Field>
+      </div>
+
+      <Field label="Transcript needs">
+        <select value={form.transcript} onChange={(e) => update("transcript", e.target.value)} name="transcript">
+          <option>E-copy</option>
+          <option>Hard copy by mail</option>
+          <option>Both</option>
+          <option>Not sure yet</option>
         </select>
       </Field>
+
       <Field label="Notes">
-        <textarea value={form.notes} onChange={(event) => update("notes", event.target.value)} name="notes" rows={5} />
+        <textarea value={form.notes} onChange={(e) => update("notes", e.target.value)} name="notes" rows={4} placeholder="Any additional details, deadlines, or questions" />
       </Field>
+
       <button className="btn-primary mt-2 min-h-12 w-full sm:w-fit" type="submit">
         Prepare Email Request
         <Send size={16} aria-hidden="true" />
       </button>
       <p className="text-sm leading-6 text-[var(--slate)]">
-        This first version opens a pre-filled email to Forbes Court Reporting. A connected form backend can be added later.
+        Clicking the button opens a pre-filled email to Forbes Court Reporting for your review before sending.
       </p>
     </form>
   );
