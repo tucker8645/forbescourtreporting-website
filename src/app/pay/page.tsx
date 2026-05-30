@@ -83,6 +83,12 @@ export default function PayPage() {
               </a>
             </div>
 
+            <div className="rounded-lg border border-[var(--line)] bg-[var(--surface-soft)] p-5">
+              <div className="flex items-center gap-2">
+                <Lock size={14} className="text-[var(--gold)]" aria-hidden="true" />
+                <p className="text-xs font-semibold text-[var(--primary)]">Secure payments via Stripe — 256-bit SSL encryption</p>
+              </div>
+            </div>
           </div>
 
           {/* Contact to get invoice */}
@@ -117,13 +123,6 @@ export default function PayPage() {
               </div>
             </div>
 
-            {/* Secure payments note */}
-            <div className="rounded-lg border border-[var(--line)] bg-[var(--surface-soft)] p-4">
-              <div className="flex items-center gap-2">
-                <Lock size={14} className="text-[var(--gold)]" aria-hidden="true" />
-                <p className="text-xs font-semibold text-[var(--primary)]">Secure payments via Stripe — 256-bit SSL encryption</p>
-              </div>
-            </div>
           </div>
         </div>
       </Section>
