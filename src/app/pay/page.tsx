@@ -67,7 +67,7 @@ export default function PayPage() {
             </div>
 
             {/* Ready to pay — directly under steps */}
-            <div className="flex flex-col justify-between rounded-lg border border-[var(--gold)] bg-white p-6">
+            <div className="mt-4 flex flex-col justify-between rounded-lg border border-[var(--gold)] bg-white p-6">
               <div>
                 <div className="flex items-center gap-2">
                   <CreditCard size={16} className="text-[var(--gold)]" aria-hidden="true" />
