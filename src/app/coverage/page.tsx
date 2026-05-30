@@ -61,7 +61,7 @@ export default function CoveragePage() {
           <p>Click a court to view its location on the map.</p>
         </SectionIntro>
         <CourtExplorer courts={courts} />
-        <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row lg:w-[48%]">
           <Link className="btn-primary" href="/contact">
             Ask About a Location
             <ArrowRight size={16} aria-hidden="true" />
