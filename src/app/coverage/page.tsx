@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { CountyCard, CoverageOverviewMap } from "@/components/county-map";
+import { CourtExplorer } from "@/components/court-explorer";
 import { PageShell } from "@/components/layout";
 import { PageHero, Section, SectionIntro } from "@/components/section";
 import { contact, counties, courts } from "@/lib/site-data";
@@ -55,14 +56,10 @@ export default function CoveragePage() {
         </div>
       </Section>
       <Section className="bg-[var(--surface-soft)]">
-        <SectionIntro eyebrow="Town and Village Courts" title="Examples of courts and municipalities Forbes has listed for service coverage." />
-        <div className="mt-8 flex flex-wrap gap-2">
-          {courts.map((court) => (
-            <span key={court} className="rounded-full border border-[var(--line)] bg-white px-3 py-2 text-sm font-semibold text-[var(--primary)]">
-              {court}
-            </span>
-          ))}
-        </div>
+        <SectionIntro eyebrow="Town and Village Courts" title="Courts and municipalities Forbes has listed for service coverage.">
+          <p>Click a court to view its location on the map.</p>
+        </SectionIntro>
+        <CourtExplorer courts={courts} />
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
           <Link className="btn-primary" href="/contact">
             Ask About a Location

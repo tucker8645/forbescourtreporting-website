@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { ScheduleForm } from "@/components/schedule-form";
 import { PageShell } from "@/components/layout";
-import { PageHero, Section, SectionIntro } from "@/components/section";
+import { PageHero, Section } from "@/components/section";
 import { contact } from "@/lib/site-data";
 
 export const metadata: Metadata = {

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { CountUp } from "@/components/count-up";
-import { ScrollIndicator } from "@/components/scroll-indicator";
 import {
   ArrowRight,
   Award,
@@ -156,8 +155,8 @@ export function CoveragePreview() {
           <p className="eyebrow">Town and Village Courts</p>
           <div className="mt-5 flex flex-wrap gap-2">
             {courts.slice(0, 24).map((court) => (
-              <span key={court} className="rounded-full bg-[var(--serene-blue)] px-3 py-1.5 text-sm font-semibold text-[var(--primary)]">
-                {court}
+              <span key={court.name} className="rounded-full bg-[var(--serene-blue)] px-3 py-1.5 text-sm font-semibold text-[var(--primary)]">
+                {court.name}
               </span>
             ))}
           </div>

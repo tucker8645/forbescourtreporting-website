@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight, FileCheck, Mail } from "lucide-react";
 import { ContactBand } from "@/components/content-blocks";
 import { PageShell } from "@/components/layout";
-import { PageHero, Section, SectionIntro } from "@/components/section";
+import { PageHero, Section } from "@/components/section";
 import { ServicesAccordion } from "@/components/services-accordion";
 import { contact } from "@/lib/site-data";
 
