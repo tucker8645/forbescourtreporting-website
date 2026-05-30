@@ -45,7 +45,6 @@ export interface Court {
 }
 
 export const courts: Court[] = [
-  { name: "Alabama",       lat: 43.0665, lon: -78.2635, county: "Genesee",    address: "3219 Drake Street Rd, Oakfield, NY 14125" },
   { name: "Albion",        lat: 43.2386, lon: -78.1781, county: "Orleans",    address: "3665 Clarendon Rd, Albion, NY 14411" },
   { name: "Alden",         lat: 42.9396, lon: -78.5485, county: "Erie",       address: "3311 Wende Rd, Alden, NY 14004" },
   { name: "Allegany",      lat: 42.0875, lon: -78.5049, county: "Cattaraugus",address: "3790 Birch Run Rd, Allegany, NY 14706" },
@@ -57,7 +56,7 @@ export const courts: Court[] = [
   { name: "Chili",         lat: 43.1037, lon: -77.7514, county: "Monroe",     address: "3235 Chili Ave, Rochester, NY 14624" },
   { name: "Clarkson",      lat: 43.2343, lon: -77.9271, county: "Monroe",     address: "3657 Lake Rd, Clarkson, NY 14430" },
   { name: "Darien",        lat: 42.9022, lon: -78.3884, county: "Genesee",    address: "10569 Alleghany Rd, Darien Center, NY 14040" },
-  { name: "Elba",          lat: 43.0666, lon: -78.2634, county: "Genesee",    address: "3219 Drake Street Rd, Oakfield, NY 14125" },
+  { name: "Elba/Alabama",  lat: 43.0666, lon: -78.2634, county: "Genesee",    address: "3219 Drake Street Rd, Oakfield, NY 14125" },
   { name: "Gaines",        lat: 43.2866, lon: -78.2100, county: "Orleans",    address: "14083 Ridge Rd, Albion, NY 14411" },
   { name: "Gates",         lat: 43.1489, lon: -77.6941, county: "Monroe",     address: "1605 Buffalo Rd, Rochester, NY 14624" },
   { name: "Geneva",        lat: 42.8498, lon: -77.0115, county: "Ontario",    address: "3750 County Road 6, Geneva, NY 14456" },
