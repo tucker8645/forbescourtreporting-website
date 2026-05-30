@@ -150,6 +150,8 @@ export function Footer() {
       <div className="border-t border-white/10 px-4 py-5 text-center text-xs text-white/50">
         © 2026 Forbes Court Reporting Services, LLC. &nbsp;&middot;&nbsp;
         <Link href="/privacy" className="underline underline-offset-2 hover:text-white/80 transition">Privacy Policy</Link>
+        &nbsp;&middot;&nbsp;
+        Built by <a href="https://www.lane6.ai" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-white/80 transition">Lane6.ai</a>
       </div>
     </footer>
   );
