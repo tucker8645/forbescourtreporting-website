@@ -18,7 +18,7 @@ import { contact, counties, courts, legacy, reporters, services } from "@/lib/si
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden min-h-[60vh] flex items-center px-4 py-16 sm:px-8 sm:py-20 lg:px-16">
+    <section className="relative overflow-hidden min-h-[50vh] flex items-center px-4 py-10 sm:min-h-[60vh] sm:px-8 sm:py-16 lg:px-16 lg:py-20">
       {/* background video */}
       <video
         autoPlay

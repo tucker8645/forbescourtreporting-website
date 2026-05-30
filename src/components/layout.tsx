@@ -43,22 +43,24 @@ export function Header() {
             {/* Pay Now — always visible */}
             <Link
               href="/pay"
-              className="inline-flex min-h-11 items-center justify-center gap-1.5 whitespace-nowrap rounded border border-[var(--gold)] px-3 text-sm font-semibold text-[var(--gold)] transition hover:bg-[var(--gold)] hover:text-white xl:px-4"
+              className="inline-flex min-h-9 items-center justify-center gap-1.5 whitespace-nowrap rounded border border-[var(--gold)] px-2.5 text-xs font-semibold text-[var(--gold)] transition hover:bg-[var(--gold)] hover:text-white sm:min-h-11 sm:px-3 sm:text-sm xl:px-4"
             >
-              <CreditCard size={15} aria-hidden="true" />
+              <CreditCard size={13} className="sm:hidden" aria-hidden="true" />
+              <CreditCard size={15} className="hidden sm:block" aria-hidden="true" />
               <span>Pay Now</span>
             </Link>
 
             {/* Schedule button — always visible */}
-            <Link className="btn-primary min-h-11 whitespace-nowrap" href="/contact">
+            <Link className="btn-primary min-h-9 px-2.5 text-xs sm:min-h-11 sm:px-4 sm:text-sm whitespace-nowrap" href="/contact">
               Schedule
-              <ArrowRight size={16} aria-hidden="true" />
+              <ArrowRight size={13} className="sm:hidden" aria-hidden="true" />
+              <ArrowRight size={16} className="hidden sm:block" aria-hidden="true" />
             </Link>
 
             {/* Hamburger — mobile only */}
             <button
               onClick={() => setOpen((o) => !o)}
-              className="flex min-h-11 min-w-11 items-center justify-center rounded border border-[var(--line)] text-[var(--primary)] lg:hidden"
+              className="flex min-h-9 min-w-9 items-center justify-center rounded border border-[var(--line)] text-[var(--primary)] sm:min-h-11 sm:min-w-11 lg:hidden"
               aria-label={open ? "Close menu" : "Open menu"}
             >
               {open ? <X size={20} /> : <Menu size={20} />}
