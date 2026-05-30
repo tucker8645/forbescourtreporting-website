@@ -31,36 +31,34 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
-            {/* Phone — icon only on md, full number on xl */}
+            {/* Phone — desktop only */}
             <a
               href={contact.phoneHref}
-              className="hidden min-h-11 items-center gap-2 rounded border border-[var(--line)] px-3 text-sm font-semibold text-[var(--primary)] transition hover:border-[var(--primary)] hover:bg-white md:flex xl:px-4"
+              className="hidden min-h-11 items-center gap-2 rounded border border-[var(--line)] px-3 text-sm font-semibold text-[var(--primary)] transition hover:border-[var(--primary)] hover:bg-white xl:flex xl:px-4"
             >
               <Phone size={16} aria-hidden="true" />
-              <span className="hidden xl:inline whitespace-nowrap">{contact.phoneDisplay}</span>
+              <span className="whitespace-nowrap">{contact.phoneDisplay}</span>
             </a>
 
-            {/* Pay Now — always visible */}
+            {/* Pay Now — desktop only */}
             <Link
               href="/pay"
-              className="inline-flex min-h-9 items-center justify-center gap-1.5 whitespace-nowrap rounded border border-[var(--gold)] px-2.5 text-xs font-semibold text-[var(--gold)] transition hover:bg-[var(--gold)] hover:text-white sm:min-h-11 sm:px-3 sm:text-sm xl:px-4"
+              className="hidden min-h-11 items-center justify-center gap-1.5 whitespace-nowrap rounded border border-[var(--gold)] px-3 text-sm font-semibold text-[var(--gold)] transition hover:bg-[var(--gold)] hover:text-white lg:inline-flex xl:px-4"
             >
-              <CreditCard size={13} className="sm:hidden" aria-hidden="true" />
-              <CreditCard size={15} className="hidden sm:block" aria-hidden="true" />
-              <span>Pay Now</span>
+              <CreditCard size={15} aria-hidden="true" />
+              Pay Now
             </Link>
 
-            {/* Schedule button — always visible */}
-            <Link className="btn-primary min-h-9 px-2.5 text-xs sm:min-h-11 sm:px-4 sm:text-sm whitespace-nowrap" href="/contact">
+            {/* Schedule — desktop only */}
+            <Link className="btn-primary hidden min-h-11 whitespace-nowrap lg:inline-flex" href="/contact">
               Schedule
-              <ArrowRight size={13} className="sm:hidden" aria-hidden="true" />
-              <ArrowRight size={16} className="hidden sm:block" aria-hidden="true" />
+              <ArrowRight size={16} aria-hidden="true" />
             </Link>
 
             {/* Hamburger — mobile only */}
             <button
               onClick={() => setOpen((o) => !o)}
-              className="flex min-h-9 min-w-9 items-center justify-center rounded border border-[var(--line)] text-[var(--primary)] sm:min-h-11 sm:min-w-11 lg:hidden"
+              className="flex min-h-11 min-w-11 items-center justify-center rounded border border-[var(--line)] text-[var(--primary)] lg:hidden"
               aria-label={open ? "Close menu" : "Open menu"}
             >
               {open ? <X size={20} /> : <Menu size={20} />}
@@ -83,7 +81,23 @@ export function Header() {
                 </Link>
               ))}
             </nav>
-            <div className="mt-4 border-t border-[var(--line)] pt-4">
+            <div className="mt-4 grid gap-2 border-t border-[var(--line)] pt-4">
+              <Link
+                href="/pay"
+                onClick={() => setOpen(false)}
+                className="flex min-h-11 items-center gap-2 rounded border border-[var(--gold)] px-3 text-sm font-semibold text-[var(--gold)] transition hover:bg-[var(--gold)] hover:text-white"
+              >
+                <CreditCard size={16} aria-hidden="true" />
+                Pay Now
+              </Link>
+              <Link
+                href="/contact"
+                onClick={() => setOpen(false)}
+                className="btn-primary min-h-11"
+              >
+                Schedule a Reporter
+                <ArrowRight size={16} aria-hidden="true" />
+              </Link>
               <a
                 href={contact.phoneHref}
                 className="flex min-h-11 items-center gap-2 rounded px-3 text-sm font-semibold text-[var(--primary)] transition hover:bg-[var(--surface-soft)]"
