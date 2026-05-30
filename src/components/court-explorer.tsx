@@ -60,6 +60,8 @@ function CourtPanel({ court, onClose }: { court: Court; onClose: () => void }) {
 
     import("leaflet").then((L) => {
       if (!mapRef.current) return;
+      // @ts-expect-error _leaflet_id is set by Leaflet on the DOM node
+      if (mapRef.current._leaflet_id) return;
 
       // Fix broken default marker icons in Next.js/webpack
       // @ts-expect-error _getIconUrl is private

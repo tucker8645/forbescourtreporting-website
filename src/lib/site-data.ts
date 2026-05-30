@@ -148,6 +148,6 @@ export const navItems = [
   { href: "/services", label: "Services" },
   { href: "/coverage", label: "Coverage" },
   { href: "/about", label: "About" },
-  { href: "/careers-students", label: "Careers & Students" },
+  { href: "/careers-students", label: "Careers" },
   { href: "/contact", label: "Contact" },
 ];

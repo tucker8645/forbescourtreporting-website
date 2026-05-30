@@ -44,7 +44,9 @@ function CountyMapModal({ county, onClose }: CountyMapModalProps) {
     const geojsonPath = GEOJSON_FILES[county];
 
     Promise.all([import("leaflet"), fetch(geojsonPath).then((r) => r.json())]).then(([L, geojson]) => {
-      if (!mapRef.current) return;
+      if (!mapRef.current || mapInstanceRef.current) return;
+      // @ts-expect-error _leaflet_id is set by Leaflet on the DOM node
+      if (mapRef.current._leaflet_id) return;
 
       const map = L.map(mapRef.current, { zoomControl: true, scrollWheelZoom: true, attributionControl: false });
       mapInstanceRef.current = map;
@@ -196,7 +198,9 @@ export function CoverageOverviewMap() {
       import("leaflet"),
       ...entries.map(([, path]) => fetch(path).then((r) => r.json())),
     ]).then(([L, ...geojsons]) => {
-      if (!mapRef.current) return;
+      if (!mapRef.current || mapInstanceRef.current) return;
+      // @ts-expect-error _leaflet_id is set by Leaflet on the DOM node
+      if (mapRef.current._leaflet_id) return;
 
       const map = L.map(mapRef.current, {
         zoomControl: true,
