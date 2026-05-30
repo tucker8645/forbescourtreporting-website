@@ -65,6 +65,21 @@ export default function PayPage() {
                 </div>
               ))}
             </div>
+
+            {/* Pay button after steps */}
+            <div className="rounded-lg border border-[var(--gold)] bg-white p-6">
+              <p className="eyebrow text-[var(--gold)]">Ready to pay?</p>
+              <p className="mt-2 text-sm leading-6 text-[var(--slate)]">
+                Have your invoice? Click below to complete your payment securely through Stripe.
+              </p>
+              <a
+                href="/api/pay"
+                className="btn-primary mt-4 inline-flex min-h-12 w-full items-center justify-center gap-2 sm:w-auto"
+              >
+                <CreditCard size={16} aria-hidden="true" />
+                Pay Invoice Now
+              </a>
+            </div>
           </div>
 
           {/* Contact to get invoice */}
