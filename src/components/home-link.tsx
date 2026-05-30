@@ -14,7 +14,7 @@ export function HomeLink() {
         alt="Forbes Court Reporting Services logo"
         width={100}
         height={100}
-        className="h-10 w-10 rounded object-contain pointer-events-none lg:h-[80px] lg:w-[80px]"
+        className="h-20 w-20 rounded object-contain pointer-events-none lg:h-[80px] lg:w-[80px]"
       />
       <div>
         <span className="block font-display text-xl font-semibold uppercase tracking-[0.08em] text-[var(--primary)] lg:text-3xl">
