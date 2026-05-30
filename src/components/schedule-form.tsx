@@ -108,7 +108,8 @@ export function ScheduleForm() {
               value={form.time}
               onChange={(e) => update("time", e.target.value)}
               name="time"
-              type="time"
+              type="text"
+              placeholder="e.g. 9:00 AM"
             />
           </Field>
         </div>
