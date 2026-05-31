@@ -55,6 +55,7 @@ export function FAQ() {
       <SectionIntro
         eyebrow="Frequently Asked Questions"
         title="Common questions about court reporting."
+        className="mx-auto text-center"
       />
       <div className="mt-8 grid gap-2">
         {faqs.map((faq, i) => (

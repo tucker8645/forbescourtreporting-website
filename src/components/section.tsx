@@ -37,13 +37,15 @@ export function SectionIntro({
   eyebrow,
   title,
   children,
+  className = "",
 }: {
   eyebrow?: string;
   title: string;
   children?: React.ReactNode;
+  className?: string;
 }) {
   return (
-    <div className="max-w-3xl">
+    <div className={`max-w-3xl ${className}`}>
       {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
       <h2 className="mt-3 text-balance font-display text-3xl font-semibold uppercase leading-tight tracking-[0.03em] text-[var(--primary)] sm:text-4xl">
         {title}
