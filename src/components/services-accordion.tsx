@@ -5,6 +5,11 @@ import { ChevronDown, Award } from "lucide-react";
 
 const services = [
   {
+    title: "Transcriptions",
+    description:
+      "The certified verbatim transcript produced from stenographic or voice reporting of any proceeding. Forbes delivers transcripts in hard-copy format by mail or as e-copy by email. Transcripts meet New York State and federal court formatting standards and serve as the official record for motions, appeals, hearings, and all downstream legal proceedings requiring an accurate account of what was said.",
+  },
+  {
     title: "Depositions",
     description:
       "Sworn out-of-court testimony taken during discovery, transcribed verbatim. Used to lock witnesses into their accounts, develop trial strategy, impeach testimony at trial, and preserve evidence if a witness becomes unavailable.",
