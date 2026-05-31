@@ -10,9 +10,19 @@ const services = [
       "The certified verbatim transcript produced from stenographic or voice reporting of any proceeding. Forbes delivers transcripts in hard-copy format by mail or as e-copy by email. Transcripts meet New York State and federal court formatting standards and serve as the official record for motions, appeals, hearings, and all downstream legal proceedings requiring an accurate account of what was said.",
   },
   {
+    title: "Real-time reporting",
+    description:
+      "Live stenographic output delivered to a screen as testimony is given — word for word, in real time. Attorneys can read testimony as it happens, annotate the transcript instantly, and share the feed with remote co-counsel. Widely used in complex litigation, multi-party depositions, and trials where immediate review of the record drives strategy.",
+  },
+  {
     title: "Depositions",
     description:
       "Sworn out-of-court testimony taken during discovery, transcribed verbatim. Used to lock witnesses into their accounts, develop trial strategy, impeach testimony at trial, and preserve evidence if a witness becomes unavailable.",
+  },
+  {
+    title: "Remote depositions",
+    description:
+      "Stenographic coverage of depositions conducted via video conference platforms. Forbes provides a certified reporter for remote proceedings, ensuring the verbatim record meets the same legal standards as in-person testimony. Exhibits, objections, and stipulations are captured in full regardless of where participants are located.",
   },
   {
     title: "Arbitrations",
@@ -28,6 +38,16 @@ const services = [
     title: "50-H hearings",
     description:
       "Statutory examinations under NY General Municipal Law §50-h allowing a municipality to examine a claimant under oath before a Notice of Claim becomes a lawsuit. The transcript often drives settlement strategy and may be the only sworn testimony taken before the case resolves.",
+  },
+  {
+    title: "Workers compensation",
+    description:
+      "Hearings before the New York State Workers' Compensation Board where injured workers, employers, and insurers present evidence on benefits, disability determinations, and medical disputes. A certified transcript of Board proceedings supports any subsequent appeal to the Workers' Compensation Board Panel or the Appellate Division.",
+  },
+  {
+    title: "Accident cases",
+    description:
+      "Depositions, examinations, and hearings arising from personal injury and motor vehicle accident claims. A verbatim record of witness accounts, expert testimony, and medical evidence is essential for trial preparation, settlement negotiations, and appellate review in high-stakes accident litigation.",
   },
   {
     title: "Examinations under oath",
